@@ -1,1 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jam Lego Swatch</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f5f5f5;
+}
+
+.container {
+    padding: 20px;
+}
+
+.main-img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.variants img {
+    width: 60px;
+    margin: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.variants img.active {
+    border: 2px solid black;
+}
+
+select, button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+}
+
+button {
+    background: black;
+    color: white;
+    border: none;
+}
+</style>
+
+<script>
+let selectedVariant = "Blue";
+
+function changeImage(el, src, variant) {
+    document.getElementById("mainImage").src = src;
+    selectedVariant = variant;
+
+    let imgs = document.querySelectorAll(".variants img");
+    imgs.forEach(img => img.classList.remove("active"));
+
+    el.classList.add("active");
+}
+
+function beli() {
+    let size = document.getElementById("size").value;
+
+    let harga = "";
+    if(size === "S") harga = "150k";
+    if(size === "M") harga = "170k";
+    if(size === "L") harga = "190k";
+    if(size === "XL") harga = "210k";
+
+    let text = "Pesan Jam Lego Swatch | Variant: " + selectedVariant + " | Size: " + size + " | Harga: " + harga;
+
+    let url = "https://wa.me/6285173139125?text=" + encodeURIComponent(text);
+
+    window.location.href = url;
+}
+</script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<img id="mainImage" src="swatch1.jpg" class="main-img">
+
+<h2>Jam Lego Swatch</h2>
+
+<p>Pilih Warna:</p>
+
+<div class="variants">
+    <img src="swatch1.jpg" onclick="changeImage(this,'swatch1.jpg','Blue')" class="active">
+    <img src="swatch2.jpg" onclick="changeImage(this,'swatch2.jpg','Pink')">
+    <img src="swatch3.jpg" onclick="changeImage(this,'swatch3.jpg','Purple')">
+</div>
+
+<p>Pilih Ukuran:</p>
+
+<select id="size">
+    <option value="S">Small - 150k</option>
+    <option value="M">Medium - 170k</option>
+    <option value="L">Large - 190k</option>
+    <option value="XL">Extra Large - 210k</option>
+</select>
+
+<button onclick="beli()">Beli via WhatsApp</button>
+
+</div>
+
+</body>
+</html>
 
