@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Detail Produk</title>
+<title>Jam Lego Swatch</title>
 
 <style>
 body {
-    font-family: sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
-    background: #fff;
+    background: #f5f5f5;
 }
 
 .container {
@@ -21,6 +21,10 @@ body {
     border-radius: 10px;
 }
 
+.variants {
+    margin-top: 10px;
+}
+
 .variants img {
     width: 60px;
     margin: 5px;
@@ -29,7 +33,7 @@ body {
     border: 2px solid transparent;
 }
 
-.variants img:hover {
+.variants img.active {
     border: 2px solid black;
 }
 
@@ -43,27 +47,35 @@ button {
     background: black;
     color: white;
     border: none;
+    font-size: 16px;
 }
 </style>
 
 <script>
 let selectedVariant = "Blue";
 
-function changeImage(src, variant) {
+function changeImage(el, src, variant) {
     document.getElementById("mainImage").src = src;
     selectedVariant = variant;
+
+    // remove active
+    let imgs = document.querySelectorAll(".variants img");
+    imgs.forEach(img => img.classList.remove("active"));
+
+    // set active
+    el.classList.add("active");
 }
 
 function beli() {
     let size = document.getElementById("size").value;
 
     let harga = "";
-    if(size == "S") harga = "150k";
-    if(size == "M") harga = "170k";
-    if(size == "L") harga = "190k";
-    if(size == "XL") harga = "210k";
+    if(size === "S") harga = "150k";
+    if(size === "M") harga = "170k";
+    if(size === "L") harga = "190k";
+    if(size === "XL") harga = "210k";
 
-    let text = "Pesan Jam Swatch Variant " + selectedVariant + " Size " + size + " Harga " + harga;
+    let text = "Pesan Jam Lego Swatch | Variant: " + selectedVariant + " | Size: " + size + " | Harga: " + harga;
 
     let url = "https://wa.me/6285173139125?text=" + encodeURIComponent(text);
 
@@ -84,9 +96,9 @@ function beli() {
 <p>Pilih Warna:</p>
 
 <div class="variants">
-    <img src="swatch1.jpg" onclick="changeImage('swatch1.jpg','Blue')">
-    <img src="swatch2.jpg" onclick="changeImage('swatch2.jpg','Pink')">
-    <img src="swatch3.jpg" onclick="changeImage('swatch3.jpg','Purple')">
+    <img src="swatch1.jpg" onclick="changeImage(this,'swatch1.jpg','Blue')" class="active">
+    <img src="swatch2.jpg" onclick="changeImage(this,'swatch2.jpg','Pink')">
+    <img src="swatch3.jpg" onclick="changeImage(this,'swatch3.jpg','Purple')">
 </div>
 
 <p>Pilih Ukuran:</p>
