@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jam Lego Swatch</title>
+<title>Xwing Project Indonesia</title>
 
 <style>
 body {
@@ -12,105 +12,81 @@ body {
     background: #f5f5f5;
 }
 
-.container {
+/* HEADER */
+header {
+    text-align: center;
     padding: 20px;
+    background: white;
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
 }
 
-.main-img {
+/* GRID PRODUK */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 15px;
+}
+
+/* CARD */
+.card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: black;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+}
+
+.card img {
     width: 100%;
-    border-radius: 10px;
+    height: 150px;
+    object-fit: cover;
 }
 
-.variants {
-    margin-top: 10px;
-}
-
-.variants img {
-    width: 60px;
-    margin: 5px;
-    border-radius: 8px;
-    cursor: pointer;
-    border: 2px solid transparent;
-}
-
-.variants img.active {
-    border: 2px solid black;
-}
-
-select, button {
-    width: 100%;
-    padding: 12px;
-    margin-top: 15px;
-}
-
-button {
-    background: black;
-    color: white;
-    border: none;
+.card h3 {
+    margin: 10px;
     font-size: 16px;
 }
+
+.price {
+    margin: 0 10px 10px;
+    color: #c9a100;
+}
 </style>
-
-<script>
-let selectedVariant = "Blue";
-
-function changeImage(el, src, variant) {
-    document.getElementById("mainImage").src = src;
-    selectedVariant = variant;
-
-    // remove active
-    let imgs = document.querySelectorAll(".variants img");
-    imgs.forEach(img => img.classList.remove("active"));
-
-    // set active
-    el.classList.add("active");
-}
-
-function beli() {
-    let size = document.getElementById("size").value;
-
-    let harga = "";
-    if(size === "S") harga = "150k";
-    if(size === "M") harga = "170k";
-    if(size === "L") harga = "190k";
-    if(size === "XL") harga = "210k";
-
-    let text = "Pesan Jam Lego Swatch | Variant: " + selectedVariant + " | Size: " + size + " | Harga: " + harga;
-
-    let url = "https://wa.me/6285173139125?text=" + encodeURIComponent(text);
-
-    window.location.href = url;
-}
-</script>
 
 </head>
 
 <body>
 
-<div class="container">
+<header>
+    Xwing Project Indonesia
+</header>
 
-<img id="mainImage" src="swatch1.jpg" class="main-img">
+<div class="grid">
 
-<h2>Jam Lego Swatch</h2>
+<!-- PRODUK 1 -->
+<a href="product.html" class="card">
+    <img src="swatch1.jpg">
+    <h3>Jam Lego Swatch</h3>
+    <div class="price">Start from Rp150.000</div>
+</a>
 
-<p>Pilih Warna:</p>
+<!-- PRODUK 2 -->
+<a href="product-analog.html" class="card">
+    <img src="analog.jpg">
+    <h3>Jam Lego Analog</h3>
+    <div class="price">Rp150.000</div>
+</a>
 
-<div class="variants">
-    <img src="swatch1.jpg" onclick="changeImage(this,'swatch1.jpg','Blue')" class="active">
-    <img src="swatch2.jpg" onclick="changeImage(this,'swatch2.jpg','Pink')">
-    <img src="swatch3.jpg" onclick="changeImage(this,'swatch3.jpg','Purple')">
-</div>
-
-<p>Pilih Ukuran:</p>
-
-<select id="size">
-    <option value="S">Small - 150k</option>
-    <option value="M">Medium - 170k</option>
-    <option value="L">Large - 190k</option>
-    <option value="XL">Extra Large - 210k</option>
-</select>
-
-<button onclick="beli()">Beli via WhatsApp</button>
+<!-- PRODUK 3 -->
+<a href="product-digital.html" class="card">
+    <img src="digital.jpg">
+    <h3>Jam Lego Digital</h3>
+    <div class="price">Rp150.000</div>
+</a>
 
 </div>
 
